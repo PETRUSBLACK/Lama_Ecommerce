@@ -16,9 +16,6 @@ mongoose.connect(process.env.MONGO_URL)
 
 app.use(express.json());
 
-app.get("/api/test", () => {
-    console.log("test is successful")
-})
 
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
