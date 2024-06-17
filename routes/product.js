@@ -17,14 +17,22 @@ router.post("/", verifyTokenAndAdmin, async (req, res) => {
         res.status(500).json(err)
     }
 })
-// router.delete("/:id", verifyTokenAndAuthorization, async (req,res)=>{
-//     try{
-//         await User.findByIdAndDelete(req.params.id)
-//         res.status(200).json("user has been deleted ....")
-//     }catch(err){
-//         res.status(500).json(err)
-//     }
-// })
+
+// UPDATE
+router.put("/:id", verifyTokenAndAdmin, async (req,res)=>{
+    try{
+        const updatedProduct = await Product.findByIdAndUpdate(
+            req.params.id,
+            {
+                $set: req.body,
+            },
+            {new : true}
+        );
+        res.status(200).json(updatedProduct);
+    }catch(err) {
+        res.status(500).json(err);
+    }
+})
 
 // // GET USER
 // router.get("/find/:id", verifyTokenAndAdmin, async (req,res)=>{
